@@ -3,7 +3,19 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("project_resources", (tbl) => {});
+  return knex.schema.createTable("project_resources", (tbl) => {
+    tbl.increments("project_resource_id").primary();
+    tbl
+      .integer("project_id")
+      .unsigned()
+      .references("project_id")
+      .inTable("projects");
+    tbl
+      .integer("resource_id")
+      .unsigned()
+      .references("resource_id")
+      .inTable("resources");
+  });
 };
 
 /**

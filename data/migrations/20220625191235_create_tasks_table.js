@@ -10,9 +10,9 @@ exports.up = function (knex) {
     tbl.boolean("task_completed");
     tbl
       .integer("project_id")
+      .unsigned()
       .references("project_id")
-      .inTable("projects")
-      .unique();
+      .inTable("projects");
   });
 };
 
